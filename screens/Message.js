@@ -42,15 +42,15 @@ function Message() {
   }, [basketItems]);
 
   return (
-    <SafeAreaView className=" bg-white flex-1">
+    <SafeAreaView className=" bg-white flex-1 dark:bg-slate-800">
       {/* top button */}
-      <View className="flex justify-between items-center flex-row px-4 py-3 bg-white shadow-sm">
+      <View className="flex justify-between items-center flex-row px-4 py-3 shadow-sm">
         <View className="flex justify-center items-center flex-row">
           <Image
             source={require("../assets/icon.png")}
             className="img-fluid h-12 w-12"
           />
-          <Text className="text-xl font-bold ml-2">Message</Text>
+          <Text className="text-xl font-bold ml-2 dark:text-white">Message</Text>
         </View>
         <View className="relative flex justify-between items-center flex-row gap-2">
           <TouchableOpacity className="rounded-full p-1 shadow ">
@@ -80,7 +80,7 @@ function Message() {
       {/* dishes */}
       <ScrollView
         showsVerticalScrollIndicator={false}
-        className="bg-white pt-5"
+        className="bg-white dark:bg-slate-800 pt-5"
         contentContainerStyle={{
           paddingBottom: 50,
         }}

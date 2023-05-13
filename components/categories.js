@@ -30,7 +30,7 @@ export default function Categories() {
             categories?.map(category=>{
               let isActive = category._id==activeCategory;
               let btnClass = isActive? ' bg-gray-600': ' bg-gray-200';
-              let textClass = isActive? ' font-semibold text-gray-800': ' text-gray-500';
+              let textClass = isActive? ' font-semibold text-gray-800 dark:text-gray-400': ' text-gray-500';
               return(
                 <View key={category._id} className="flex justify-center items-center mr-6">
                   <TouchableOpacity 

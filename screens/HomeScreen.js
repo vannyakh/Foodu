@@ -20,11 +20,14 @@ import { getFeaturedResturants } from "../api";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
 import { TouchableWithoutFeedback } from "react-native";
+import { useColorScheme } from "nativewind";
+
 export default function HomeScreen() {
   const [featuredCategories, setFeaturedCategories] = useState([]);
   const navigation = useNavigation();
   const [refreshing, setRefreshing] = React.useState(false);
   const [loading , setLoading] = useState(false);
+  const { colorScheme, toggleColorScheme } = useColorScheme();
 
   
   const Search = () => {
@@ -70,7 +73,7 @@ export default function HomeScreen() {
 
 
   return (
-    <SafeAreaView className="bg-white">
+    <SafeAreaView className="bg-white dark:bg-slate-800">
       {/* loading */}
       {loading && (
         <View
@@ -100,7 +103,7 @@ export default function HomeScreen() {
             source={require("../assets/icon.png")}
             className="img-fluid h-12 w-12"
           />
-          <Text className="text-xl font-bold ml-2">Foodu</Text>
+          <Text className="text-xl font-bold ml-2 dark:text-white">Foodu</Text>
         </View>
         <View 
           className="flex flex-row items-center"
@@ -125,10 +128,18 @@ export default function HomeScreen() {
           <TouchableOpacity
             onPress={() => navigation.navigate("Notification")}
           >
+            {
+              colorScheme != "dark" ? (
             <Image
               source={require("../assets/images/notificationhome.png")}
               className="h-10 w-10"
             />
+              ) : ( 
+            <Image
+              source={require("../assets/images/notificationhome_dark.png")}
+              className="h-10 w-10"
+            />
+              )}
           </TouchableOpacity>
         
             </View>

@@ -8,10 +8,12 @@ import Profile from '../screens/Profile';
 import Orders from '../screens/Orders';
 import Message from '../screens/Message';
 import { themeColors } from '../theme';
+import { useColorScheme } from "nativewind";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function BottomNavigation(){
+    const { colorScheme, toggleColorScheme } = useColorScheme();
     return(
         <Tab.Navigator
             screenOptions={
@@ -51,8 +53,9 @@ function BottomNavigation(){
                 tabBarInactiveTintColor: 'gray',
                 headerShown: false,
                 tabBarStyle: {
-                    // backgroundColor: themeColors.bgColor(1),
+                    backgroundColor: colorScheme === 'dark' ? '#1E293B' : 'white',
                     borderTopWidth: 1,
+                    borderTopColor: colorScheme === 'dark' ? '#808080' : '#DBDBDB',
                     elevation: 0,
                     shadowOpacity: 0,
                     height: 70,

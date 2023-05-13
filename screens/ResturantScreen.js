@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import React, { useEffect, useLayoutEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -57,6 +58,19 @@ export default function ResturantScreen() {
       })
     );
   }, []);
+  const backButtonStyle = {
+    position: 'absolute',
+    left: 16,
+    padding: 2,
+    borderRadius: 999,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+    top: Platform.OS === 'ios' ? 56 : 32,
+    backgroundColor: '#f9fafb',
+  };
   return (
     <>
       <BasketIcon />
@@ -67,15 +81,15 @@ export default function ResturantScreen() {
             source={{ uri: urlFor(imgUrl).url() }}
           />
           <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            className="absolute top-6 left-4 bg-gray-50 p-2 rounded-full shadow"
-          >
-            <Icon.ArrowLeft strokeWidth={2.5} stroke={themeColors.bgColor(1)} />
-          </TouchableOpacity>
+  onPress={() => navigation.goBack()}
+  style={backButtonStyle}
+>
+  <Icon.ArrowLeft strokeWidth={2.5} stroke={themeColors.bgColor(1)} />
+</TouchableOpacity>
         </View>
         <View
           style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
-          className="bg-white -mt-12 pt-6"
+          className="bg-white -mt-12 pt-6 "
         >
           <View className="px-5">
             <Text className="text-3xl font-bold">{title}</Text>

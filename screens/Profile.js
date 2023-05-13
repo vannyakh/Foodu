@@ -20,21 +20,22 @@ import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { useColorScheme } from "nativewind";
 import ArrowRight from "../assets/images/ArrowRight.png";
+import ArrowRight_dark from "../assets/images/ArrowRight_dark.png";
 function Profile() {
   const navigation = useNavigation();
   const route = useRoute();
   const [isEnabled, setIsEnabled] = React.useState(false);
-  const {colorScheme , toggleColorScheme} = useColorScheme();
+  const { colorScheme, toggleColorScheme } = useColorScheme();
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   // signOut(auth)
   const handleLogout = async () => {
-        await signOut(auth)
-        if(!auth.currentUser){
-            navigation.navigate('Login')
-        }else{
-            console.log('error in logout');
-        }
+    await signOut(auth);
+    if (!auth.currentUser) {
+      navigation.navigate("Login");
+    } else {
+      console.log("error in logout");
+    }
   };
   return (
     <SafeAreaView className=" bg-white flex-1 dark:bg-slate-800">
@@ -44,16 +45,25 @@ function Profile() {
             source={require("../assets/icon.png")}
             className="img-fluid h-12 w-12"
           />
-          <Text className="text-xl font-bold ml-2 dark:text-white">Profile</Text>
+          <Text className="text-xl font-bold ml-2 dark:text-white">
+            Profile
+          </Text>
         </View>
         <View>
           <TouchableOpacity
           // onPress={() => navigation.navigate("Search")}
           >
-            <Image
-              source={require("../assets/images/MoreCircle.png")}
-              className="h-7 w-7"
-            />
+            {colorScheme != "dark" ? (
+              <Image
+                source={require("../assets/images/MoreCircle.png")}
+                className="h-7 w-7"
+              />
+            ) : (
+              <Image
+                source={require("../assets/images/MoreCircle_dark.png")}
+                className="h-7 w-7"
+              />
+            )}
           </TouchableOpacity>
         </View>
       </View>
@@ -65,10 +75,10 @@ function Profile() {
               onPress={() => navigation.navigate("Myprofile")}
               className="flex flex-row items-center"
             >
-            <Image
-              source={require("../assets/images/deliveryGuy.png")}
-              className="h-24 w-24 rounded-full "
-            />
+              <Image
+                source={require("../assets/images/deliveryGuy.png")}
+                className="h-24 w-24 rounded-full "
+              />
             </TouchableOpacity>
             <View className="flex flex-col items-start justify-center ml-2">
               <Text className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
@@ -98,111 +108,156 @@ function Profile() {
           >
             {/* menu items */}
             <View className="flex flex-col gap-1">
-              <TouchableOpacity
-              onPress={() => navigation.navigate("Discount")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("Discount")}>
                 <View className="flex flex-row items-center h-11 justify-between mb-2">
                   <View className="flex flex-row items-center">
-                    <Image
-                      source={require("../assets/images/Discount.png")}
-                      className="h-7 w-7"
-                    />
+                    {colorScheme != "dark" ? (
+                      <Image
+                        source={require("../assets/images/Discount.png")}
+                        className="h-7 w-7"
+                      />
+                    ) : (
+                      <Image
+                        source={require("../assets/images/Discount_dark.png")}
+                        className="h-7 w-7"
+                      />
+                    )}
                     <Text className="text-lg font-medium text-gray-900 ml-2 dark:text-white">
                       Special Offers & Promo
                     </Text>
                   </View>
-                  <Image source={ArrowRight} className="h-5 w-5" />
+                  {colorScheme != "dark" ? (
+                    <Image source={ArrowRight} className="h-5 w-5" />
+                  ) : (
+                    <Image source={ArrowRight_dark} className="h-5 w-5" />
+                  )}
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity
-              onPress={() => navigation.navigate("Address")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("Address")}>
                 <View className="flex flex-row items-center h-11 justify-between mb-2">
                   <View className="flex flex-row items-center">
-                    <Image
-                      source={require("../assets/images/Location.png")}
-                      className="h-7 w-7"
-                    />
+                    {colorScheme != "dark" ? (
+                      <Image
+                        source={require("../assets/images/Location.png")}
+                        className="h-7 w-7"
+                      />
+                    ) : (
+                      <Image
+                        source={require("../assets/images/Location_dark.png")}
+                        className="h-7 w-7"
+                      />
+                    )}
                     <Text className="text-lg font-medium text-gray-900 ml-2 dark:text-white">
                       Address
                     </Text>
                   </View>
-                  <Image source={ArrowRight} className="h-5 w-5" />
+                  {colorScheme != "dark" ? (
+                    <Image source={ArrowRight} className="h-5 w-5" />
+                  ) : (
+                    <Image source={ArrowRight_dark} className="h-5 w-5" />
+                  )}
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity
-              onPress={() => navigation.navigate("Payment")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("Payment")}>
                 <View className="flex flex-row items-center h-11 justify-between mb-2">
                   <View className="flex flex-row items-center">
-                    <Image
-                      source={require("../assets/images/Wallet.png")}
-                      className="h-7 w-7"
-                    />
+                    {
+                      colorScheme != "dark" ? (
+                        <Image
+                          source={require("../assets/images/Wallet.png")}
+                          className="h-7 w-7"
+                        />) : (
+                          <Image source={require("../assets/images/Wallet_dark.png")} className="h-7 w-7" />
+                        )}
+                    
                     <Text className="text-lg font-medium text-gray-900 ml-2 dark:text-white">
                       Payment
                     </Text>
                   </View>
-                  <Image source={ArrowRight} className="h-5 w-5" />
+                  {colorScheme != "dark" ? (
+                    <Image source={ArrowRight} className="h-5 w-5" />
+                  ) : (
+                    <Image source={ArrowRight_dark} className="h-5 w-5" />
+                  )}
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-              onPress={() => navigation.navigate("Notification")}
+                onPress={() => navigation.navigate("Notification")}
               >
                 <View className="flex flex-row items-center h-11 justify-between mb-2">
                   <View className="flex flex-row items-center">
+                    {colorScheme != "dark" ? (
                     <Image
                       source={require("../assets/images/Notification.png")}
                       className="h-7 w-7"
-                    />
+                    />) : (
+                      <Image source={require("../assets/images/Notification_dark.png")} className="h-7 w-7" />
+                    )}
                     <Text className="text-lg font-medium text-gray-900 ml-2 dark:text-white">
                       Notification
                     </Text>
                   </View>
-                  <Image source={ArrowRight} className="h-5 w-5" />
+                  {colorScheme != "dark" ? (
+                    <Image source={ArrowRight} className="h-5 w-5" />
+                  ) : (
+                    <Image source={ArrowRight_dark} className="h-5 w-5" />
+                  )}
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity
-              onPress={() => navigation.navigate("Friend")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("Friend")}>
                 <View className="flex flex-row items-center h-11 justify-between mb-2">
                   <View className="flex flex-row items-center">
+                    {colorScheme != "dark" ? (
                     <Image
                       source={require("../assets/images/Friends.png")}
                       className="h-7 w-7"
-                    />
+                    />) : (
+                      <Image source={require("../assets/images/Friends_dark.png")} className="h-7 w-7" />
+                    )}
                     <Text className="text-lg font-medium text-gray-900 ml-2 dark:text-white">
                       Invite Friends
                     </Text>
                   </View>
-                  <Image source={ArrowRight} className="h-5 w-5" />
+                  {colorScheme != "dark" ? (
+                    <Image source={ArrowRight} className="h-5 w-5" />
+                  ) : (
+                    <Image source={ArrowRight_dark} className="h-5 w-5" />
+                  )}
                 </View>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => navigation.navigate("About")}>
                 <View className="flex flex-row items-center h-11 justify-between mb-2">
                   <View className="flex flex-row items-center">
+                    {colorScheme != "dark" ? (
                     <Image
                       source={require("../assets/images/Info.png")}
                       className="h-7 w-7"
-                    />
+                    />) : (
+                      <Image source={require("../assets/images/Info_dark.png")} className="h-7 w-7" />
+                    )}
                     <Text className="text-lg font-medium text-gray-900 ml-2 dark:text-white">
                       About Us & Policy
                     </Text>
                   </View>
-                  <Image source={ArrowRight} className="h-5 w-5" />
+                  {colorScheme != "dark" ? (
+                    <Image source={ArrowRight} className="h-5 w-5" />
+                  ) : (
+                    <Image source={ArrowRight_dark} className="h-5 w-5" />
+                  )}
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity
-              onPress={() => navigation.navigate("Language")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("Language")}>
                 <View className="flex flex-row items-center h-11 justify-between mb-2">
                   <View className="flex flex-row items-center">
+                    {colorScheme != "dark" ? (
                     <Image
                       source={require("../assets/images/lang.png")}
                       className="h-7 w-7"
-                    />
+                    />) : (
+                      <Image source={require("../assets/images/lang_dark.png")} className="h-7 w-7" />
+                    )}
                     <Text className="text-lg font-medium text-gray-900 ml-2 dark:text-white">
                       Language
                     </Text>
@@ -211,17 +266,24 @@ function Profile() {
                     <Text className="text-lg font-normal ml-2 mr-2 text-gray-400 dark:text-white">
                       English
                     </Text>
-                    <Image source={ArrowRight} className="h-5 w-5" />
+                    {colorScheme != "dark" ? (
+                      <Image source={ArrowRight} className="h-5 w-5" />
+                    ) : (
+                      <Image source={ArrowRight_dark} className="h-5 w-5" />
+                    )}
                   </View>
                 </View>
               </TouchableOpacity>
               <View onPress={toggleSwitch}>
                 <View className="flex flex-row items-center h-11 justify-between mb-2">
                   <View className="flex flex-row items-center">
+                    {colorScheme != "dark" ? (
                     <Image
                       source={require("../assets/images/Show.png")}
                       className="h-7 w-7"
-                    />
+                    />) : (
+                      <Image source={require("../assets/images/Show_dark.png")} className="h-7 w-7" />
+                    )}
                     <Text className="text-lg font-medium text-gray-900 ml-2 dark:text-white">
                       Dark Mode
                     </Text>
@@ -235,9 +297,7 @@ function Profile() {
                   ></Switch>
                 </View>
               </View>
-              <TouchableOpacity
-              onPress={() => navigation.navigate("Auth")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
                 <View className="flex flex-row items-center h-11 justify-center  my-4">
                   <View className="flex flex-row items-center">
                     <Image

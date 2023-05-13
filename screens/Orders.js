@@ -141,15 +141,15 @@ function Orders() {
   }, []);
 
   return (
-    <SafeAreaView className=" bg-white flex-1">
+    <SafeAreaView className=" bg-white flex-1 dark:bg-slate-800">
       {/* top button */}
-      <View className="flex justify-between items-center flex-row px-4 py-3 bg-white shadow-sm">
+      <View className="flex justify-between items-center flex-row px-4 py-3 bg-white dark:bg-slate-800 shadow-sm">
         <View className="flex justify-center items-center flex-row">
           <Image
             source={require("../assets/icon.png")}
             className="img-fluid h-12 w-12"
           />
-          <Text className="text-xl font-bold ml-2">Orders</Text>
+          <Text className="text-xl font-bold ml-2 dark:text-white">Orders</Text>
         </View>
         <TouchableOpacity className="absolute z-10 rounded-full p-1 shadow  right-4">
           <Icon.Search strokeWidth={2} stroke="#212121" />
@@ -222,7 +222,7 @@ function Orders() {
       {/* List order */}
       <ScrollView
         showsVerticalScrollIndicator={false}
-        className="bg-white pt-5 "
+        className="bg-white pt-5 dark:bg-slate-800 "
         contentContainerStyle={{
           paddingBottom: 50,
         }}
@@ -287,10 +287,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white",
+    // backgroundColor: "white",
     marginHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#EEEEEE",
+    // borderBottomWidth: 1,
+    // borderBottomColor: "#EEEEEE",
   },
   tabItem: {
     padding: 16,
@@ -298,6 +298,8 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    borderBottomWidth: 2,
+    borderBottomColor: "#9E9E9E",
   },
   activeTabItem: {
     borderBottomWidth: 2,

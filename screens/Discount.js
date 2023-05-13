@@ -15,9 +15,8 @@ import React from "react";
 export default function Discount() {
 
   const navigation = useNavigation();
-  const offlist = [
+  const offerlist = [
     {
-      id: 1,
       offer:"30% off",
       title: "discount only valid for today!",
       description: "Use code: FIRST10",
@@ -25,7 +24,6 @@ export default function Discount() {
       bgColor: "#1BAC4B"
     },
     {
-      id: 2,
       offer:"30% off",
       title: "discount only valid for today!",
       description: "Use code: FIRST10",
@@ -33,7 +31,6 @@ export default function Discount() {
       bgColor: "#FF4D67"
     },
     {
-      id: 3,
       offer:"30% off",
       title: "discount only valid for today!",
       description: "Use code: FIRST10",
@@ -61,7 +58,7 @@ export default function Discount() {
       </View>
       <ScrollView className="flex-1">
         <View className="flex flex-col mt-2 px-4">
-          {offlist.map(item => (
+          {offerlist.map((item, index) => (
           <TouchableOpacity
             onPress={() => navigation.navigate("Home")}
             className="flex flex-row justify-between items-center px-4 py-6 rounded-3xl  border mb-4 h-40 relative overflow-hidden"
@@ -75,6 +72,7 @@ export default function Discount() {
               elevation: 5,
             }}
           >
+            
             <Image
               source={require("../assets/images/l.png")}
               className=" absolute top-0 -left-6"
