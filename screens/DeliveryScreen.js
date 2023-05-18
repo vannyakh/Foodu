@@ -15,7 +15,7 @@ export default function DeliveryScreen() {
     const dispatch = useDispatch();
     const handleCancel = ()=>{
       dispatch(emptyBasket());
-      navigation.navigate('Home')
+      navigation.navigate('HomeScreen')
     }
   return (
     <View className="flex-1" >

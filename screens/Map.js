@@ -21,7 +21,7 @@ export default function Map() {
   const dispatch = useDispatch();
   const handleCancel = () => {
     dispatch(emptyBasket());
-    navigation.navigate("Home");
+    navigation.navigate("HomeScreen");
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: themeColors.bgColor(1) }}>
@@ -57,8 +57,7 @@ export default function Map() {
                     longitude: 20,
                 }} 
                 title="My Location"
-                pinColor={themeColors.bgColor(1)}
-                
+                pinColor={themeColors.bgColor(1)}   
             />
         </MapView>
     </View>

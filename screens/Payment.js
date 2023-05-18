@@ -41,7 +41,7 @@ export default function Payment() {
         {/* paypal */}
         <View className="flex flex-col mt-2 px-4">
           <TouchableOpacity
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => navigation.navigate("HomeScreen")}
             className="flex flex-row justify-between items-center px-4 py-6 rounded-xl  border mb-4 "
             style={{
               borderColor: themeColors.bgColor(1),
@@ -67,7 +67,7 @@ export default function Payment() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => navigation.navigate("HomeScreen")}
             className="flex flex-row justify-between items-center px-4 py-6 rounded-xl  border mb-4 "
             style={{
               borderColor: themeColors.bgColor(1),
@@ -94,7 +94,7 @@ export default function Payment() {
           </TouchableOpacity>
           {/* ABA */}
           <TouchableOpacity
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => navigation.navigate("HomeScreen")}
             className="flex flex-row justify-between items-center px-4 py-6 rounded-xl  border mb-4 "
             style={{
               borderColor: themeColors.bgColor(1),

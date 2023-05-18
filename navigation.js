@@ -19,7 +19,7 @@ import Discount from './screens/Discount';
 import Payment from './screens/Payment';
 import Friend from './screens/InviteFriends';
 import Map from './screens/Map';
-import Auth from './screens/auth';
+import Auth from './screens/auth/Auths';
 import Signup from './screens/auth/Signup';
 import Signin from './screens/auth/Signin';
 import Forgotpassword from './screens/auth/Forgotpassword';
@@ -93,7 +93,7 @@ function Navigation() {
 
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'
+        <Stack.Navigator initialRouteName='Welcome'
             screenOptions={{
                 headerShown: false
             }}
@@ -101,7 +101,7 @@ function Navigation() {
             {/* Welcom */}
             <Stack.Screen name="Welcome"  options={{ presentation: 'fullScreenModal', headerShown: false }}  component={Welcome} />
             <Stack.Screen name="AllCaregory"  options={{ presentation: 'fullScreenModal', headerShown: false }}  component={AllCaregory} />
-            <Stack.Screen name="Home" component={BottomNavigation} />
+            <Stack.Screen name="HomeScreen" component={BottomNavigation} />
             <Stack.Screen name="Resturant" component={ResturantScreen} />
             <Stack.Screen name="Search"  component={Search} />
             <Stack.Screen name="Filter" component={Filter} />

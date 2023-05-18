@@ -60,6 +60,7 @@ export default function Discount() {
         <View className="flex flex-col mt-2 px-4">
           {offerlist.map((item, index) => (
           <TouchableOpacity
+            key={index}
             onPress={() => navigation.navigate("Home")}
             className="flex flex-row justify-between items-center px-4 py-6 rounded-3xl  border mb-4 h-40 relative overflow-hidden"
             style={{

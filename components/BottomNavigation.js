@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import { createNativeStackNavigator, HeaderBackButton } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
@@ -9,7 +7,7 @@ import Orders from '../screens/Orders';
 import Message from '../screens/Message';
 import { themeColors } from '../theme';
 import { useColorScheme } from "nativewind";
-const Stack = createNativeStackNavigator();
+
 const Tab = createBottomTabNavigator();
 
 function BottomNavigation(){

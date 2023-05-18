@@ -12,6 +12,7 @@ import {
   Switch,
 } from "react-native";
 import { signOut } from "firebase/auth";
+
 import { auth } from "../configs/firebase";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";

@@ -80,7 +80,7 @@ export default function OTP() {
         verificationCode
       );
       await auth.signInWithCredential(credential);
-      navigation.navigate("Home");
+      navigation.navigate("HomeScreen");
     } catch (err) {
       setVerificationError(err.message);
     }
@@ -159,7 +159,7 @@ export default function OTP() {
         </View>
         <TouchableOpacity
           onPress={
-            () => navigation.navigate("Home")
+            () => navigation.navigate("HomeScreen")
           }
           className="bg-white rounded-full py-3  shadow flex flex-row items-center justify-center  border-gray-200 border mb-7 mt-8"
           style={{ backgroundColor: themeColors.bgColor(1) }}

@@ -93,7 +93,8 @@ export default function HomeScreen() {
       )}
       <StatusBar 
         barStyle="white-content" 
-        backgroundColor={themeColors.bgColor(1)}
+        backgroundColor={colorScheme != "dark" ? themeColors.bgColor(1) : "#1F2937"}
+
         
       />
       {/* Header */}

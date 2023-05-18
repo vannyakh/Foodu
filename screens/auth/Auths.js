@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../../theme";
-export default function index() {
+export default function Auths() {
   const navigation = useNavigation();
 
   return (
