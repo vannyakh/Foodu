@@ -110,7 +110,7 @@ function Navigation() {
 
             <Stack.Screen name="Delivery" options={{ presentation: 'fullScreenModal', headerShown: false }} component={DeliveryScreen} />
             <Stack.Screen name="Orders" options={{ headerShown: false }} component={Orders} />
-            <Stack.Screen name="About" options={{ headerShown: true }} component={About} />
+            <Stack.Screen name="About" options={{ headerShown: false }} component={About} />
             <Stack.Screen name="Address" options={{ headerShown: false }} component={Address} />
             <Stack.Screen name="Notification" options={{ headerShown: false }} component={Notification} />
             <Stack.Screen name="Myprofile"  component={Myprofile} />
