@@ -11,6 +11,7 @@ import {
   RefreshControl,
 } from "react-native";
 import React, { useMemo, useState, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { getFeaturedResturants } from "../api";
 import {

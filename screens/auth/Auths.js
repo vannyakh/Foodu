@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  StatusBar,
 } from "react-native";
 import { View } from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +17,10 @@ export default function Auths() {
 
   return (
     <SafeAreaView className="bg-white flex-1">
+      <StatusBar
+        backgroundColor={'white'}
+        barStyle={'dark-content'}
+      />
       <ScrollView className="flex-1">
       <View className="flex-1 flex flex-col p-4 ">
         {/* <TouchableOpacity

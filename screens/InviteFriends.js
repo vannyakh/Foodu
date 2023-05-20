@@ -10,7 +10,7 @@ import { themeColors } from "../theme";
 import * as Icon from "react-native-feather";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-
+import Loarding from "../components/Loarding";
 export default function InviteFriends() {
   const navigation = useNavigation();
 

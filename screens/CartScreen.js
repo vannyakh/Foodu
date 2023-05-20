@@ -1,5 +1,5 @@
-import { View, Text, StatusBar, TouchableOpacity, Image, ScrollView } from 'react-native'
-import React, { useMemo, useState } from 'react'
+import { View, Text, StatusBar, TouchableOpacity, Image, ScrollView,Animated,Dimensions,PanResponder,StyleSheet,Alert } from 'react-native'
+import React, { useMemo, useState,useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromBasket, selectBasketItems, selectBasketTotal } from '../slices/basketSlice';
 import { selectResturant } from '../slices/resturantSlice';
@@ -7,6 +7,12 @@ import { useNavigation } from '@react-navigation/native';
 import { urlFor } from '../sanity';
 import * as Icon from "react-native-feather";
 import { themeColors } from '../theme';
+
+const { width } = Dimensions.get("window");
+const lockWidth = width * 0.75;
+const lockHeight = 65;
+const smallgap = 4;
+const finalPosition = lockWidth - lockHeight;
 
 export default function BasketScreen() {
     const resturant = useSelector(selectResturant); 
@@ -29,7 +35,60 @@ export default function BasketScreen() {
         setGroupedItems(gItems);
         // console.log('items: ',gItems);
        
-    }, [basketItems])
+    }, [basketItems]);
+
+
+    const pan = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
+  const translateBtn = pan.x.interpolate({
+    inputRange: [0, finalPosition],
+    outputRange: [0, finalPosition],
+    extrapolate: "clamp",
+  });
+  const textOpacity = pan.x.interpolate({
+    inputRange: [0, lockWidth / 2],
+    outputRange: [1, 0],
+    extrapolate: "clamp",
+  });
+  const translateText = pan.x.interpolate({
+    inputRange: [0, lockWidth / 2],
+    outputRange: [0, lockWidth / 4],
+    extrapolate: "clamp",
+  });
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderGrant: () => {},
+      onPanResponderMove: Animated.event([null, { dx: pan.x }], {
+        useNativeDriver: false,
+      }),
+      onPanResponderRelease: (e, g) => {
+        if (g.vx > 2 || g.dx > lockWidth / 2) {
+          unlock();
+        } else {
+          reset();
+        }
+      },
+      onPanResponderTerminate: () => reset(),
+    })
+  ).current;
+  const reset = () => {
+    Animated.spring(pan, {
+      toValue: { x: 0, y: 0 },
+      useNativeDriver: true,
+      bounciness: 0,
+    }).start();
+  };
+  const unlock = () => {
+    Animated.spring(pan, {
+      toValue: { x: finalPosition, y: 0 },
+      useNativeDriver: true,
+      bounciness: 0,
+    }).start(() => {
+        GotoPreparingOrder();
+      });
+  };
+  const GotoPreparingOrder = () => navigation.navigate('PreparingOrder');
+
     
   return (
     <View className=" bg-white flex-1">
@@ -100,15 +159,60 @@ export default function BasketScreen() {
                 <Text className="font-extrabold">Order Total</Text>
                 <Text className="font-extrabold">${basketTotal+deliveryFee}</Text>
             </View>
-            <View>
-                <TouchableOpacity 
+            <View 
+            className=" flex justify-center items-center rounded-3xl shadow-md"
+            >
+                {/* <TouchableOpacity 
                 style={{backgroundColor: themeColors.bgColor(1)}} 
                 onPress={()=> navigation.navigate('PreparingOrder')} 
                 className="p-3 rounded-full">
                     <Text className="text-white text-center font-bold text-lg">Place Order</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                <View style={styles.lockContainer}>
+                <Animated.Text style={[styles.txt, { opacity: textOpacity, transform: [{ translateX: translateText }] }]}>
+                {'$'}{basketTotal+deliveryFee} {'Place Order'}
+                </Animated.Text>
+                <Animated.View style={[styles.bar, { transform: [{ translateX: translateBtn }] }]} {...panResponder.panHandlers} >
+                <Image source={require('../assets/images/bikeGuy.png')} className="w-14 h-14 rounded-full" />
+                </Animated.View>
+            </View>
             </View>
        </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: 100
+    },
+    lockContainer: {
+        height: lockHeight,
+        width: lockWidth,
+        borderRadius: lockHeight,
+        backgroundColor: themeColors.bgColor(0.8),
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden'
+    },
+    txt: {
+        color: '#fff',
+        letterSpacing: 2,
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    bar: {
+        position: 'absolute',
+        height: lockHeight - (smallgap * 2),
+        width: lockHeight - (smallgap * 2),
+        backgroundColor: '#1BAC4B',
+        borderRadius: lockHeight,
+        left: smallgap,
+        elevation: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})

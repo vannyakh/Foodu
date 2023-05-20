@@ -1,4 +1,4 @@
-import { Text, ImageBackground, TouchableOpacity, Image } from "react-native";
+import { Text, ImageBackground, TouchableOpacity, Image,StatusBar } from "react-native";
 import { View } from "react-native-animatable";
 import React, { useEffect } from "react";
 import { themeColors } from "../../theme";
@@ -9,10 +9,12 @@ export default function WelcomTo() {
 
   return (
     <View>
+       
       <ImageBackground
         source={require("../../assets/images/bg_image.png")}
         style={{ width: "100%", height: "100%" }}
       >
+        
         <View
           animation={"fadeInUpBig"}
           duration={800}

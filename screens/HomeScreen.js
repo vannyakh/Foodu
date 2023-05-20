@@ -21,6 +21,7 @@ import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
 import { TouchableWithoutFeedback } from "react-native";
 import { useColorScheme } from "nativewind";
+import Loarding from "../components/Loarding";
 
 export default function HomeScreen() {
   const [featuredCategories, setFeaturedCategories] = useState([]);
@@ -87,8 +88,9 @@ export default function HomeScreen() {
             alignItems: "center",
           }}
         >
-          <ActivityIndicator size="large" color={themeColors.bgColor(1)} />
-          <Text className="text-white mt-2">Loading...</Text>
+          {/* <ActivityIndicator size="large" color={themeColors.bgColor(1)} />
+          <Text className="text-white mt-2">Loading...</Text> */}
+          <Loarding />
         </View>
       )}
       <StatusBar 
