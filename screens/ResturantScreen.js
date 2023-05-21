@@ -59,17 +59,17 @@ export default function ResturantScreen() {
     );
   }, []);
   const backButtonStyle = {
-    position: 'absolute',
+    position: "absolute",
     left: 16,
     padding: 2,
     borderRadius: 999,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
-    top: Platform.OS === 'ios' ? 56 : 32,
-    backgroundColor: '#f9fafb',
+    top: Platform.OS === "ios" ? 56 : 32,
+    backgroundColor: "#f9fafb",
   };
   return (
     <>
@@ -81,11 +81,11 @@ export default function ResturantScreen() {
             source={{ uri: urlFor(imgUrl).url() }}
           />
           <TouchableOpacity
-  onPress={() => navigation.goBack()}
-  style={backButtonStyle}
->
-  <Icon.ArrowLeft strokeWidth={2.5} stroke={themeColors.bgColor(1)} />
-</TouchableOpacity>
+            onPress={() => navigation.goBack()}
+            style={backButtonStyle}
+          >
+            <Icon.ArrowLeft strokeWidth={2.5} stroke={themeColors.bgColor(1)} />
+          </TouchableOpacity>
         </View>
         <View
           style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
@@ -108,14 +108,10 @@ export default function ResturantScreen() {
               </View>
               <View className="flex-row items-center space-x-1">
                 <Icon.MapPin color="gray" width={15} height={15} />
-                <Text className="text-gray-800 text-xs">
-                  {" "}
-                  {address}
-                </Text>
+                <Text className="text-gray-800 text-xs"> {address}</Text>
                 <Text className="text-gray-800 text-xs"> | </Text>
                 <Icon.Truck color="gray" width={15} height={15} />
                 <Text className="text-gray-800 text-xs"> 30-40 min</Text>
-                
               </View>
             </View>
             <Text className="text-gray-500 mt-2">{description}</Text>
