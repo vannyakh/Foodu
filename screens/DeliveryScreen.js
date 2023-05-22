@@ -1,48 +1,55 @@
-import { View, Text, StatusBar, TouchableOpacity, Image, SafeAreaView } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { useDispatch, useSelector } from 'react-redux';
-import { selectResturant } from '../slices/resturantSlice';
-import MapView, {Marker} from 'react-native-maps';
-import { themeColors } from '../theme';
+import {
+  View,
+  Text,
+  StatusBar,
+  TouchableOpacity,
+  Image,
+  SafeAreaView,
+} from "react-native";
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { selectResturant } from "../slices/resturantSlice";
+import MapView, { Marker } from "react-native-maps";
+import { themeColors } from "../theme";
 import * as Icon from "react-native-feather";
-import { emptyBasket } from '../slices/basketSlice';
-
+import { AntDesign } from "@expo/vector-icons";
+import { emptyBasket } from "../slices/basketSlice";
 
 export default function DeliveryScreen() {
-    const navigation = useNavigation();
-    const resturant = useSelector(selectResturant);
-    const dispatch = useDispatch();
-    const handleCancel = ()=>{
-      dispatch(emptyBasket());
-      navigation.navigate('HomeScreen')
-    }
+  const navigation = useNavigation();
+  const resturant = useSelector(selectResturant);
+  const dispatch = useDispatch();
+  const handleCancel = () => {
+    dispatch(emptyBasket());
+    navigation.navigate("HomeScreen");
+  };
   return (
-    <View className="flex-1" >
-        <MapView
+    <View className="flex-1">
+      <MapView
         initialRegion={{
+          latitude: resturant.lat,
+          longitude: resturant.lng,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        }}
+        className="flex-1"
+        mapType="standard"
+      >
+        <Marker
+          coordinate={{
             latitude: resturant.lat,
             longitude: resturant.lng,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }} 
-          className="flex-1"
-          mapType="standard"
-        >
-            <Marker 
-                coordinate={{
-                    latitude: resturant.lat,
-                    longitude: resturant.lng
-                }} 
-                title={resturant.title}
-                description={resturant.description}
-                pinColor={themeColors.bgColor(1)}
-            />
-        </MapView>
-        
+          }}
+          title={resturant.title}
+          description={resturant.description}
+          pinColor={themeColors.bgColor(1)}
+        />
+      </MapView>
+
       <View className="rounded-t-3xl -mt-12 bg-white relative">
-          <TouchableOpacity className="absolute right-4 top-2">
-            
+        {/* <TouchableOpacity className="absolute right-4 top-2">
+          
           </TouchableOpacity>
           <View className="flex-row justify-between px-5 pt-10">
               <View>
@@ -61,7 +68,7 @@ export default function DeliveryScreen() {
             </View>
             
             <View className="flex-1 ml-3">
-                <Text className="text-lg font-bold text-white">Syed Noman</Text>
+                <Text className="text-lg font-bold text-white">Soriya Van</Text>
                 <Text className="text-white font-semibold">Your Rider</Text>
             </View>
             <View  className="flex-row items-center space-x-3 mr-3">
@@ -70,13 +77,66 @@ export default function DeliveryScreen() {
               </TouchableOpacity>
               
               <TouchableOpacity onPress={handleCancel} className="bg-white p-2 rounded-full">
-                <Icon.X stroke={'red'} strokeWidth="5" />
+              <AntDesign name="message1" size={24} color={themeColors.bgColor(1)} />
               </TouchableOpacity>
               
             </View>
             
+        </View> */}
+        <View 
+          className="mt-4"
+        >
+          <Text className="text-center font-bold text-xl">Checkout Orders</Text>
+        </View>
+        <View
+        className="flex-row flex justify-between items-center px-5 py-3"
+        >
+          <View
+            className="flex-row flex justify-between items-center"
+          >
+            <Image
+              source={require("../assets/images/deliveryGuy.png")}
+              className="w-16 h-16 rounded-full"
+            />
+            <View
+              className="flex flex-col justify-start ml-4"
+            >
+              <Text className=" font-bold text-xl">Soriya Van</Text>
+              <Text className=" font-semibold">Your Rider</Text>
+            </View>
+          </View>
+
+        <View 
+          className="flex flex-col justify-end items-end"
+        >
+          <View
+            className="flex-row flex items-center"
+          >
+            <Image
+              source={require("../assets/images/Star.png")}
+              className="w-6 h-6 rounded-full"
+            />
+            <Text 
+              className="ml-2"
+            >4.8</Text>
+          </View>
+          <Text
+            className="text-sm font-semibold"
+          >HSW3434CJ</Text>
+        </View>
+        </View>
+        <View>
+          <TouchableOpacity>
+            <Text>Call</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text>Message</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text>Cancel</Text>
+          </TouchableOpacity>   
         </View>
       </View>
     </View>
-  )
+  );
 }

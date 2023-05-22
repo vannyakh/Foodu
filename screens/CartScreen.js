@@ -215,14 +215,14 @@ export default function BasketScreen() {
           <Text className="font-extrabold">Order Total</Text>
           <Text className="font-extrabold">${basketTotal + deliveryFee}</Text>
         </View>
-        <View className=" flex justify-center items-center rounded-3xl shadow-md">
-          {/* <TouchableOpacity 
+        <View className="flex-row flex justify-center items-center rounded-3xl shadow-md">
+          <TouchableOpacity 
                 style={{backgroundColor: themeColors.bgColor(1)}} 
                 onPress={()=> navigation.navigate('PreparingOrder')} 
-                className="p-3 rounded-full">
+                className="p-3 rounded-full flex flex-1">
                     <Text className="text-white text-center font-bold text-lg">Place Order</Text>
-                </TouchableOpacity> */}
-          <TouchableOpacity style={styles.lockContainer} 
+                </TouchableOpacity>
+          {/* <TouchableOpacity style={styles.lockContainer} 
           onPress={()=> navigation.navigate('PreparingOrder')} 
           >
             <Animated.Text
@@ -249,7 +249,7 @@ export default function BasketScreen() {
                 className="w-14 h-14 rounded-full "
               />
             </Animated.View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>

@@ -31,6 +31,7 @@ import { themeColors } from "../theme";
 import Imagepiza from "../assets/images/pizzaDish.png";
 import Imagepiza2 from "../assets/images/pizzaDish2.png";
 import Imagepiza3 from "../assets/images/pizzaDish3.png";
+
 function Orders() {
   const [featuredCategories, setFeaturedCategories] = useState([]);
   const basketItems = useSelector(selectBasketItems);
@@ -143,6 +144,7 @@ function Orders() {
 
   return (
     <SafeAreaView className=" bg-white flex-1 dark:bg-slate-800">
+      {/* app bar */}
       {/* top button */}
       <View className="flex justify-between items-center flex-row px-4 py-3 bg-white dark:bg-slate-800 shadow-sm">
         <View className="flex justify-center items-center flex-row">

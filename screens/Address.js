@@ -58,10 +58,11 @@ export default function Address() {
          {/* map address */}
          {address.map((item ,index ) => (
           
-          <View className="flex flex-row justify-between w-full items-center bg-gray-100 dark:bg-slate-600 px-4 py-3 rounded-lg mb-4">
+          <View className="flex flex-row justify-between w-full items-center bg-gray-100 dark:bg-slate-600 px-4 py-3 rounded-lg mb-4"
+          key={item.id}
+          >
             <View className="flex flex-row justify-start items-center" 
             style={{width: "80%"}}
-            key={item.id}
             >
               <Image
                 source={require("../assets/images/Locationadd.png")}
