@@ -5,8 +5,9 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
+  Button,
 } from "react-native";
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { selectResturant } from "../slices/resturantSlice";
@@ -25,42 +26,45 @@ export default function Map() {
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: themeColors.bgColor(1) }}>
-    <View className="flex-1" >
-      {/* top button */}
-      <View className="relative py-4 shadow-sm flex items-center flex-row justify-center"
-      style={{backgroundColor: themeColors.bgColor(1)}}
-      >
-        <TouchableOpacity 
-            style={{backgroundColor: themeColors.bgColor(1)}} 
-            onPress={navigation.goBack} 
-            className="absolute z-10 rounded-full p-1 shadow  left-2">
+      <View className="flex-1">
+        {/* top button */}
+        <View
+          className="relative py-4 shadow-sm flex items-center flex-row justify-center"
+          style={{ backgroundColor: themeColors.bgColor(1) }}
+        >
+          <TouchableOpacity
+            style={{ backgroundColor: themeColors.bgColor(1) }}
+            onPress={navigation.goBack}
+            className="absolute z-10 rounded-full p-1 shadow  left-2"
+          >
             <Icon.ArrowLeft strokeWidth={2} stroke="white" />
-        </TouchableOpacity>
-        <View>
-            <Text className="text-center font-bold text-xl text-white">Map</Text>
+          </TouchableOpacity>
+          <View>
+            <Text className="text-center font-bold text-xl text-white">
+              Map
+            </Text>
+          </View>
         </View>
-        
-      </View>
         <MapView
-        initialRegion={{
-            latitude: 10,
-            longitude:20,
+          initialRegion={{
+            latitude: 11.553901,
+            longitude: 104.8923029,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
-          }} 
-          className="flex-1"
+          }}
+          style={{ flex: 1 }}
           mapType="standard"
         >
-            <Marker 
-                coordinate={{
-                    latitude: 10,
-                    longitude: 20,
-                }} 
-                title="My Location"
-                pinColor={themeColors.bgColor(1)}   
-            />
+          <Marker
+            coordinate={{
+              latitude: 11.553901,
+              longitude: 104.8923029,
+            }}
+            title="Cambodia"
+            pinColor={themeColors.bgColor(1)}
+          />
         </MapView>
-    </View>
+      </View>
     </SafeAreaView>
   );
 }

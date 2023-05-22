@@ -30,8 +30,8 @@ export default function DeliveryScreen() {
         initialRegion={{
           latitude: resturant.lat,
           longitude: resturant.lng,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
+          latitudeDelta: 0.1722,
+          longitudeDelta: 0.1221,
         }}
         className="flex-1"
         mapType="standard"
@@ -84,12 +84,14 @@ export default function DeliveryScreen() {
             
         </View> */}
         <View 
-          className="mt-4"
+          className="mt-4 pt-2 pb-5 mx-4 border-b border-[#e7e7e7] flex overflow-ellipsis"
         >
-          <Text className="text-center font-bold text-xl">Checkout Orders</Text>
+          <Text className="text-center font-bold text-xl"
+          numberOfLines={1}
+          >Checkout Orders</Text>
         </View>
         <View
-        className="flex-row flex justify-between items-center px-5 py-3"
+        className="flex-row flex justify-between items-center mx-4  py-5 border-b border-[#e7e7e7]"
         >
           <View
             className="flex-row flex justify-between items-center"
