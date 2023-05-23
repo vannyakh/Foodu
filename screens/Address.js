@@ -115,7 +115,7 @@ export default function Address() {
             height: 50,
             borderRadius: 10,
           }}
-          onPress={() => navigation.navigate("AddAddress")}
+          onPress={() => navigation.navigate("Map")}
           className="flex flex-row justify-center items-center"
         >
           <View className="flex flex-row justify-center items-center">

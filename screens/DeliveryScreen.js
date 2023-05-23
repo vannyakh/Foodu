@@ -15,7 +15,7 @@ import { themeColors } from "../theme";
 import * as Icon from "react-native-feather";
 import { AntDesign } from "@expo/vector-icons";
 import { emptyBasket } from "../slices/basketSlice";
-
+import { Ionicons } from '@expo/vector-icons';
 export default function DeliveryScreen() {
   const navigation = useNavigation();
   const resturant = useSelector(selectResturant);
@@ -26,6 +26,13 @@ export default function DeliveryScreen() {
   };
   return (
     <View className="flex-1">
+      <TouchableOpacity
+        onPress={() => navigation.navigate("HomeScreen")}
+        className="flex items-center justify-center p-2 rounded-full  absolute top-5 left-5 z-50"
+        style={{ backgroundColor: themeColors.bgColor(0.5) }}
+      >
+      <Ionicons name="chevron-back-sharp" size={24} color="white" />
+      </TouchableOpacity>
       <MapView
         initialRegion={{
           latitude: resturant.lat,
@@ -127,16 +134,50 @@ export default function DeliveryScreen() {
           >HSW3434CJ</Text>
         </View>
         </View>
-        <View>
-          <TouchableOpacity>
+        <View
+          className="flex-row flex justify-center items-center mx-4  py-5 "
+        >
+          <TouchableOpacity
+            className="flex-col flex  items-center"
+          >
+            <View
+              className="flex-row flex justify-center items-center bg-[#46db78]  p-2 rounded-full"
+            >
+            <Image 
+              source={require("../assets/images/Call.png")}
+              className="w-10 h-10 rounded-full"
+            />
+            </View>
             <Text>Call</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            className="flex-col flex  items-center mx-7"
+          >
+            <View
+              className="flex-row flex justify-center items-center bg-[#3cb2d6]  p-2 rounded-full"
+            >
+            <Image 
+              source={require("../assets/images/Chat.png")}
+              className="w-10 h-10 rounded-full"
+            />
+            </View>
             <Text>Message</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={()=>navigation.navigate("Cancelledorder")}
+            className="flex-col flex  items-center"
+          >
+            <View
+              className="flex-row flex justify-center items-center bg-[#dc2626]  p-2 rounded-full"
+            >
+            <Image 
+              source={require("../assets/images/cancell.png")}
+              className="w-10 h-10 rounded-full"
+            />
+            </View>
             <Text>Cancel</Text>
-          </TouchableOpacity>   
+          </TouchableOpacity>
+           
         </View>
       </View>
     </View>

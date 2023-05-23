@@ -7646,6 +7646,11 @@ react-native-progress@^5.0.0:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-radio-buttons-group@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/react-native-radio-buttons-group/-/react-native-radio-buttons-group-3.0.1.tgz"
+  integrity sha512-F54i/tt5+BUoZwwbo+9zCf4tKGz9KahcH5g6P+bLwkWC0BC07da5cwGU+8Akru981HaMzx6f7Jgl3ZAhR1Fd4Q==
+
 react-native-ratings@8.0.4:
   version "8.0.4"
   resolved "https://registry.npmjs.org/react-native-ratings/-/react-native-ratings-8.0.4.tgz"

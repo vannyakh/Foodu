@@ -29,6 +29,9 @@ import userAuth from './hooks/userAuth';
 import AllCaregory from './screens/AllCaregory';
 import Email_signup from './screens/auth/Email_signup';
 import Email_login from './screens/auth/Email_login';
+import ResturantList from './screens/ResturantList';
+// DeliveryScreen
+import Cancelledorder from './screens/Driver/Cancel';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -119,12 +122,15 @@ function Navigation() {
             <Stack.Screen name="Payment"  component={Payment} />
             <Stack.Screen name="Friend"  component={Friend} />
             <Stack.Screen name="Map" options={{ headerShown: false }}  component={Map} />
+            <Stack.Screen name="ResturantList" options={{ headerShown: false }}  component={ResturantList} />
             {/* Auth */}
             <Stack.Screen name="Auth" options={{ headerShown: false }} component={Auth} />
             <Stack.Screen name="Signup" options={{ headerShown: false }} component={Signup} />
             <Stack.Screen name="Signin" options={{ headerShown: false }} component={Signin} />
             <Stack.Screen name="Forgotpassword" options={{ headerShown: false }} component={Forgotpassword} />
             <Stack.Screen name="Otp" options={{ headerShown: false }} component={Otp} />
+            {/* Delivery */}
+            <Stack.Screen name="Cancelledorder" options={{ headerShown: false }} component={Cancelledorder} />
 
         </Stack.Navigator>      
     </NavigationContainer>

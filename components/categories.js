@@ -3,18 +3,25 @@ import React, { useState, useEffect } from 'react'
 import { getCategories } from '../api'
 import { urlFor } from '../sanity';
 import { themeColors } from '../theme';
-
+import { useNavigation } from '@react-navigation/native';
 export default function Categories() {
  
   const [activeCategory, setActiveCategory] = useState(null);
   const [categories, setCategories] = useState([])
   useEffect(() => {
     getCategories().then(data=>{
-      // console.log('got data', data[0].name);
+      console.log('got data', data[0].name);
       setCategories(data);
     })
   }, [])
+
+  const hendleCategoryClick = (id) => {
+    setActiveCategory(id);
+    navigation.navigate('ResturantList')
+  }
+
   
+  const navigation = useNavigation();
   return (
     <View className="mt-4">
       <ScrollView
@@ -34,7 +41,8 @@ export default function Categories() {
               return(
                 <View key={category._id} className="flex justify-center items-center mr-6">
                   <TouchableOpacity 
-                    onPress={()=> setActiveCategory(category._id)} 
+                    // onPress={()=> setActiveCategory(category._id)} 
+                    onPress={()=> hendleCategoryClick(category._id)}
                     className={"p-1 rounded-full shadow"+ btnClass}>
                     <Image style={{width: 45, height: 45}} source={{
                         uri: urlFor(category.image).url(),
