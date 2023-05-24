@@ -21,7 +21,6 @@ import * as Progress from "react-native-progress";
 import { useNavigation } from "@react-navigation/native";
 import { themeColors } from "../theme";
 import { LinearGradient } from "expo-linear-gradient";
-import { Icon } from "react-native-elements";
 import { AntDesign } from "@expo/vector-icons";
 
 const { width } = Dimensions.get("window");

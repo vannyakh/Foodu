@@ -12,7 +12,6 @@ import {
   Dimensions,
   StyleSheet,
 } from "react-native";
-import { Button } from "react-native-elements";
 import { themeColors } from "../theme";
 import * as Icon from "react-native-feather";
 import { useNavigation } from "@react-navigation/native";
@@ -118,7 +117,6 @@ export default function About() {
           />
         </View>
         <View>
-        <Button title="Solid" />
         </View>
       </ScrollView>
     </SafeAreaView>

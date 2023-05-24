@@ -32,6 +32,7 @@ import Email_login from './screens/auth/Email_login';
 import ResturantList from './screens/ResturantList';
 // DeliveryScreen
 import Cancelledorder from './screens/Driver/Cancel';
+import DriverInformation from './screens/Driver/DriverInformation';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -102,9 +103,9 @@ function Navigation() {
             }}
         >
             {/* Welcom */}
+            <Stack.Screen name="HomeScreen" component={BottomNavigation} />
             <Stack.Screen name="Welcome"  options={{ presentation: 'fullScreenModal', headerShown: false }}  component={Welcome} />
             <Stack.Screen name="AllCaregory"  options={{ presentation: 'fullScreenModal', headerShown: false }}  component={AllCaregory} />
-            <Stack.Screen name="HomeScreen" component={BottomNavigation} />
             <Stack.Screen name="Resturant" component={ResturantScreen} />
             <Stack.Screen name="Search"  component={Search} />
             <Stack.Screen name="Filter" component={Filter} />
@@ -131,6 +132,7 @@ function Navigation() {
             <Stack.Screen name="Otp" options={{ headerShown: false }} component={Otp} />
             {/* Delivery */}
             <Stack.Screen name="Cancelledorder" options={{ headerShown: false }} component={Cancelledorder} />
+            <Stack.Screen name="DriverInformation" options={{ headerShown: false }} component={DriverInformation} />
 
         </Stack.Navigator>      
     </NavigationContainer>

@@ -103,10 +103,14 @@ export default function DeliveryScreen() {
           <View
             className="flex-row flex justify-between items-center"
           >
+            <TouchableOpacity
+              onPress={() => navigation.navigate("DriverInformation")}
+              >
             <Image
               source={require("../assets/images/deliveryGuy.png")}
               className="w-16 h-16 rounded-full"
             />
+            </TouchableOpacity>
             <View
               className="flex flex-col justify-start ml-4"
             >

@@ -86,6 +86,22 @@ export default function ResturantScreen() {
           >
             <Icon.ArrowLeft strokeWidth={2.5} stroke={themeColors.bgColor(1)} />
           </TouchableOpacity>
+          <View 
+            className="flex-row justify-between items-center gap-3 p-1 absolute top-[32px] right-4 "
+          >
+            <TouchableOpacity>
+            <Image 
+              source={require("../assets/images/Like.png")}
+              className="w-7 h-7"
+              />
+              </TouchableOpacity>
+            <TouchableOpacity>
+            <Image
+              source={require("../assets/images/Shares.png")}
+              className="w-7 h-7"
+              />
+              </TouchableOpacity>
+          </View>
         </View>
         <View
           style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}

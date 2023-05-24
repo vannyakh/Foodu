@@ -145,8 +145,7 @@ export default function Signin() {
         height: 40,
         margin: 6,
         borderWidth: 1,
-        padding: 8,
-        outline: "none",
+        padding: 8,  
         borderWidth: 0,
       },
       countryCode: {

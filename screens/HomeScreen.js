@@ -41,7 +41,11 @@ export default function HomeScreen() {
     setLoading(true);
     getFeaturedResturants().then((data) => {
       setFeaturedCategories(data);
-      setLoading(false);
+      // setoutime 2000
+      setTimeout(() => {
+        setLoading(false);
+      }
+      , 500);
     });
     
   }, []);

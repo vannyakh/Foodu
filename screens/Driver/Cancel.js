@@ -14,7 +14,6 @@ import { themeColors } from "../../theme";
 import { Ionicons } from "@expo/vector-icons";
 import * as Icon from "react-native-feather";
 import { AntDesign } from "@expo/vector-icons";
-import { ListItemCheckbox } from "react-native-elements";
 import RadioGroup from "react-native-radio-buttons-group";
 import { Overlay } from "react-native-elements";
 import { View} from "react-native-animatable"
