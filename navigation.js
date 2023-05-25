@@ -13,7 +13,9 @@ import Orders from './screens/Orders';
 import About from './screens/About';
 import Address from './screens/Address';
 import Notification from './screens/Notification';
+// my profile
 import Myprofile from './screens/Myprofile';
+import EditProfile from './screens/EditProfile';
 import Language from './screens/Language';
 import Discount from './screens/Discount';
 import Payment from './screens/Payment';
@@ -30,6 +32,7 @@ import AllCaregory from './screens/AllCaregory';
 import Email_signup from './screens/auth/Email_signup';
 import Email_login from './screens/auth/Email_login';
 import ResturantList from './screens/ResturantList';
+import Addpayment from './screens/payment/Addpayment';
 // DeliveryScreen
 import Cancelledorder from './screens/Driver/Cancel';
 import DriverInformation from './screens/Driver/DriverInformation';
@@ -112,12 +115,18 @@ function Navigation() {
             <Stack.Screen name="Cart" options={{ presentation: 'modal', headerShown: false }} component={CartScreen} />
             <Stack.Screen name="PreparingOrder" options={{ presentation: 'fullScreenModal', headerShown: false }} component={PreparingOrderScreen} />
 
+            {/* Payment */}
+            <Stack.Screen name="Addpayment" options={{ headerShown: false }} component={Addpayment} />
+
             <Stack.Screen name="Delivery" options={{ presentation: 'fullScreenModal', headerShown: false }} component={DeliveryScreen} />
             <Stack.Screen name="Orders" options={{ headerShown: false }} component={Orders} />
             <Stack.Screen name="About" options={{ headerShown: false }} component={About} />
             <Stack.Screen name="Address" options={{ headerShown: false }} component={Address} />
             <Stack.Screen name="Notification" options={{ headerShown: false }} component={Notification} />
+            {/* My profile */}
             <Stack.Screen name="Myprofile"  component={Myprofile} />
+            <Stack.Screen name="Editprofile"  component={EditProfile} />
+
             <Stack.Screen name="Language"  component={Language} />
             <Stack.Screen name="Discount"  component={Discount} />
             <Stack.Screen name="Payment"  component={Payment} />

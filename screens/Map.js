@@ -26,6 +26,10 @@ export default function Map() {
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: themeColors.bgColor(1) }}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor={themeColors.bgColor(1)}
+      />
       <View className="flex-1">
         {/* top button */}
         <View

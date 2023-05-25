@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import React, { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useColorScheme } from "nativewind";
 import {
   removeFromBasket,
   selectBasketItems,
@@ -22,10 +23,12 @@ import { urlFor } from "../sanity";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
 
+
 function Search() {
   const navigation = useNavigation();
+  const { colorScheme, toggleColorScheme } = useColorScheme();
   return (
-    <SafeAreaView className=" bg-white flex-1">
+    <SafeAreaView className=" bg-white flex-1 dark:bg-slate-800">
       {/* top button */}
       {/* <View className="relative py-4 shadow-sm">
       <TouchableOpacity 
@@ -54,8 +57,12 @@ function Search() {
             <Icon.Search height="25" width="25" stroke="gray" />
             <TextInput
               placeholder="Resturants"
-              className="ml-2 flex-1"
+              className="ml-2 flex-1 "
               keyboardType="default"
+              placeholderTextColor={
+                colorScheme === "dark" ? "#979797" : "#6D6D6D"
+              }
+              color={colorScheme === "dark" ? "white" : "black"}
             />
           </View>
           <TouchableOpacity>
@@ -82,14 +89,14 @@ function Search() {
       {/* dishes */}
       <ScrollView
         showsVerticalScrollIndicator={false}
-        className="bg-white pt-5"
+        className="bg-white dark:bg-slate-800 pt-5"
         contentContainerStyle={{
           paddingBottom: 50,
         }}
       >
         <View className="px-4 flex flex-col gap-4">
           <View className="flex flex-col">
-            <Text className="text-gray-800 text-lg font-medium mb-2">
+            <Text className="text-gray-800 dark:text-white text-lg font-medium mb-2">
               Recent Searches
             </Text>
             <View style={styles.chipsContainer}>
@@ -114,7 +121,7 @@ function Search() {
             </View>
           </View>
           <View className="flex flex-col">
-            <Text className="text-gray-800 text-lg font-medium mb-2">
+            <Text className="text-gray-800 dark:text-white text-lg font-medium mb-2">
             Popular Cuisines
             </Text>
             <View style={styles.chipsContainer}>
@@ -148,7 +155,7 @@ function Search() {
             </View>
           </View>
           <View className="flex flex-col">
-            <Text className="text-gray-800 text-lg font-medium mb-2">
+            <Text className="text-gray-800  dark:text-white text-lg font-medium mb-2">
             All Cuisines
             </Text>
             <View style={styles.chipsContainer}>

@@ -134,7 +134,7 @@ export default function Payment() {
             height: 50,
             borderRadius: 10,
           }}
-          onPress={() => navigation.navigate("AddAddress")}
+          onPress={() => navigation.navigate("Addpayment")}
           className="flex flex-row justify-center items-center"
         >
           <View className="flex flex-row justify-center items-center">

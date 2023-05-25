@@ -19,6 +19,8 @@ function CartOrder({ name, item, status, distance, id, price, image, statusBackg
             borderBottomWidth: 1,
           }}
         >
+         
+          
           <Image
             className="rounded-3xl"
             style={{ height: 120, width: 120 }}

@@ -2,7 +2,6 @@ import sanityClient from '@sanity/client';
 import imageBuilder from '@sanity/image-url';
 
 const client = sanityClient({
-    // projectId: 'npcegap4',
     projectId: 'bzwn9imp',
     dataset: 'production',
     useCdn: true,

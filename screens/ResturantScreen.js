@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { urlFor } from "../sanity";
 import DishRow from "../components/dishRow";
@@ -17,6 +17,7 @@ import { selectResturant, setResturant } from "../slices/resturantSlice";
 import { emptyBasket } from "../slices/basketSlice";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
+import Filslist from "../components/Filslist";
 
 export default function ResturantScreen() {
   const navigation = useNavigation();
@@ -58,6 +59,12 @@ export default function ResturantScreen() {
       })
     );
   }, []);
+  const [liked, setLiked] = useState(false);
+
+  const handleLikeToggle = () => {
+    setLiked(!liked);
+  };
+
   const backButtonStyle = {
     position: "absolute",
     left: 16,
@@ -86,21 +93,30 @@ export default function ResturantScreen() {
           >
             <Icon.ArrowLeft strokeWidth={2.5} stroke={themeColors.bgColor(1)} />
           </TouchableOpacity>
-          <View 
-            className="flex-row justify-between items-center gap-3 p-1 absolute top-[32px] right-4 "
+          <View className="flex-row justify-between flex items-center px-4 rounded-full py-2 absolute  right-4  " 
+            style={{ 
+              top: Platform.OS === "ios" ? 50 : 24,
+              backgroundColor: "rgba(0,0,0,0.2)",
+          }}
           >
-            <TouchableOpacity>
-            <Image 
-              source={require("../assets/images/Like.png")}
-              className="w-7 h-7"
+            <TouchableOpacity onPress={handleLikeToggle}
+              className="mr-2"
+            >
+              <Image
+                source={
+                  liked
+                    ? require("../assets/images/LikeFilled.png")
+                    : require("../assets/images/Like.png")
+                }
+                style={{ width: 26, height: 26 }}
               />
-              </TouchableOpacity>
+            </TouchableOpacity>
             <TouchableOpacity>
-            <Image
-              source={require("../assets/images/Shares.png")}
-              className="w-7 h-7"
+              <Image
+                source={require("../assets/images/Shares.png")}
+                className="w-[26px] h-[26px]"
               />
-              </TouchableOpacity>
+            </TouchableOpacity>
           </View>
         </View>
         <View
@@ -132,6 +148,9 @@ export default function ResturantScreen() {
             </View>
             <Text className="text-gray-500 mt-2">{description}</Text>
           </View>
+        </View>
+        <View className="flex px-4 py-2 bg-white ">
+          <Filslist />
         </View>
         <View className="pb-36 bg-white">
           <Text className="px-4 py-4 text-2xl font-bold">Menu</Text>
