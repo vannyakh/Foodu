@@ -41,7 +41,7 @@ export default function HomeScreen() {
     setLoading(true);
     getFeaturedResturants().then((data) => {
       setFeaturedCategories(data);
-      console.log(data);
+      // console.log(data);
       // setoutime 2000
       setTimeout(() => {
         setLoading(false);

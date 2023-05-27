@@ -5,11 +5,8 @@ import { auth } from '../configs/firebase'
 
 export default function UserAuth() {
     const [user, setUser] = useState(null)
-    
-
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            console.log('got user',user);
             if (user) {
                 setUser(user)
             } else {

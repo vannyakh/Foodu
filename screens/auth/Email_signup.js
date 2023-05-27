@@ -5,17 +5,16 @@ import {
   StyleSheet,
   Image,
   TextInput,
+  ScrollView,
 } from "react-native";
 import { View } from "react-native-animatable";
-import { auth } from "../../configs/firebase";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../../theme";
 import { Alert } from "react-native";
-import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 
 export default function Email_signup() {
   const navigation = useNavigation();
@@ -37,54 +36,13 @@ export default function Email_signup() {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
-    const handleSignup = async () => {
-    // if (password !== confirmPassword) {
-    //     setError("Password do not match");
-    //     return;
-    // }
-    // if(email === '' || password === '' || confirmPassword === '' || name === '') {
-    //     setError("Please fill all the fields");
-    //     return;
-    // }
-    // if(password.length < 6) {
-    //     setError("Password must be at least 6 characters");
-    //     return;
-    // }
-    // if(name.length < 3) {
-    //     setError("Name must be at least 3 characters");
-    //     return;
-    // }
-    // if(!email.includes('@')) {
-    //     setError("Invalid email");
-    //     return;
-    // }
-    // if(!email.includes('.com')) {
-    //     setError("Invalid email");
-    //     return;
-    // }
-
-    if(email && password){
-        try {
-            setLoading(true);
-            await createUserWithEmailAndPassword(auth, email, password);
-           
-        } catch (error) {
-            setError(error.message);
-            console.log('error', error.message);
-           
-        }
-    }
-    
-    };
-
   return (
     <SafeAreaView className="bg-white flex-1">
-      <View className="flex-1 flex flex-col p-4 ">
+      <ScrollView className="flex-1 flex flex-col p-4 ">
         <TouchableOpacity
           style={{ backgroundColor: themeColors.bgColor(1) }}
           onPress={navigation.goBack}
-          className="absolute z-10 rounded-full p-1 shadow  left-4 top-14"
+          className="absolute z-10 rounded-full p-1 shadow top-4"
         >
           <Icon.ArrowLeft strokeWidth={2} stroke="white" />
         </TouchableOpacity>
@@ -170,7 +128,6 @@ export default function Email_signup() {
             />
           </View>
           <TouchableOpacity
-            onPress={handleSignup}
             className="bg-white rounded-full py-3  shadow flex flex-row items-center justify-center  border-gray-200 border mb-7 mt-8"
             style={{ backgroundColor: themeColors.bgColor(1) }}
           >
@@ -184,7 +141,7 @@ export default function Email_signup() {
 
         <View className="flex flex-col mt-4">
           {/* or */}
-        {error !== '' && <Text className="text-center text-red-500 text-lg font-normal ">{error}</Text>}
+        {/* {error !== '' && <Text className="text-center text-red-500 text-lg font-normal ">{error}</Text>} */}
           <View className="flex flex-row items-center justify-center mt-4">
             <Text className="text-center text-gray-500 text-lg font-normal ">
               Already have an account?
@@ -199,7 +156,7 @@ export default function Email_signup() {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -215,7 +172,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingBottom: 6,
     paddingTop: 12,
-    outline: "none",
+
     borderWidth: 0,
   },
   input: {
@@ -223,7 +180,7 @@ const styles = StyleSheet.create({
     margin: 6,
     borderWidth: 1,
     padding: 8,
-    outline: "none",
+
     borderWidth: 0,
   },
   countryCode: {

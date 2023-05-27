@@ -27,7 +27,6 @@ import Signin from './screens/auth/Signin';
 import Forgotpassword from './screens/auth/Forgotpassword';
 import Otp from './screens/auth/OTP';
 import Welcome from './screens/welcome/WelcomTo';
-import userAuth from './hooks/userAuth';
 import AllCaregory from './screens/AllCaregory';
 import Email_signup from './screens/auth/Email_signup';
 import Email_login from './screens/auth/Email_login';
@@ -36,114 +35,83 @@ import Addpayment from './screens/payment/Addpayment';
 // DeliveryScreen
 import Cancelledorder from './screens/Driver/Cancel';
 import DriverInformation from './screens/Driver/DriverInformation';
+import { Session } from '@supabase/supabase-js';
+import { useEffect, useState } from 'react';
+import { supabase } from './lib/supabase';
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+
 
 function Navigation() {
+ const [session, setSession] = useState(null)
 
-  const { user } = userAuth();
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+  if(session && session.user){
+    console.log(session.user)
+  }
 
-  // if(user){
-  //   return (
-  //     <NavigationContainer>
-  //         <Stack.Navigator initialRouteName='Home'
-  //             screenOptions={{
-  //                 headerShown: false
-  //             }} >
-  //               <Stack.Screen name="Home" component={BottomNavigation} />
-  //              <Stack.Screen name="Resturant" component={ResturantScreen} />
-  //              <Stack.Screen name="Search"  component={Search} />
-  //              <Stack.Screen name="Filter" component={Filter} />
-  //              <Stack.Screen name="Cart" options={{ presentation: 'modal', headerShown: false }} component={CartScreen} />
-  //              <Stack.Screen name="PreparingOrder" options={{ presentation: 'fullScreenModal', headerShown: false }} component={PreparingOrderScreen} />
-  //              <Stack.Screen name="Delivery" options={{ presentation: 'fullScreenModal', headerShown: false }} component={DeliveryScreen} />
-  //              <Stack.Screen name="Orders" options={{ headerShown: false }} component={Orders} />
-  //              <Stack.Screen name="About" options={{ headerShown: true }} component={About} />
-  //              <Stack.Screen name="Address" options={{ headerShown: true }} component={Address} />
-  //              <Stack.Screen name="Notification" options={{ headerShown: false }} component={Notification} />
-  //              <Stack.Screen name="Myprofile" options={{ headerShown: true }} component={Myprofile} />
-  //              <Stack.Screen name="Language" options={{ headerShown: true }} component={Language} />
-  //              <Stack.Screen name="Discount" options={{ headerShown: true }} component={Discount} />
-  //              <Stack.Screen name="Payment" options={{ headerShown: true }} component={Payment} />
-  //              <Stack.Screen name="Friend" options={{ headerShown: true }} component={Friend} />
-  //              <Stack.Screen name="Map" options={{ headerShown: false }}  component={Map} />
-
-  //     </Stack.Navigator>
-  //     </NavigationContainer>
-  //   );
-  // }else{
-
-  //   return (
-  //     <NavigationContainer>
-  //         <Stack.Navigator initialRouteName='Welcome'
-  //             screenOptions={{
-  //                 headerShown: false
-  //             }} >
-  //               {/* Welcom */}
-  //               <Stack.Screen name="Welcome"  options={{ presentation: 'fullScreenModal', headerShown: false }}  component={Welcome} />
-  //             {/* Auth */}
-  //              <Stack.Screen name="Auth" options={{ headerShown: false }} component={Auth} />
-  //              <Stack.Screen name="Signup" options={{ headerShown: false }} component={Signup} />
-  //              <Stack.Screen name="Signin" options={{ headerShown: false }} component={Signin} />
-  //              <Stack.Screen name="Forgotpassword" options={{ headerShown: false }} component={Forgotpassword} />
-  //              <Stack.Screen name="Otp" options={{ headerShown: false }} component={Otp} />
-
-  //              {/* email */}
-  //               <Stack.Screen name="Email_signup" options={{ headerShown: false }} component={Email_signup} />
-  //               <Stack.Screen name="Email_login" options={{ headerShown: false }} component={Email_login} />
-            
-  //        </Stack.Navigator>
-  //     </NavigationContainer>
-  //   );
-
-  // }
-
+  
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='Welcome'
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            {/* Welcom */}
-            <Stack.Screen name="HomeScreen" component={BottomNavigation} />
-            <Stack.Screen name="Welcome"  options={{ presentation: 'fullScreenModal', headerShown: false }}  component={Welcome} />
-            <Stack.Screen name="AllCaregory"  options={{ presentation: 'fullScreenModal', headerShown: false }}  component={AllCaregory} />
-            <Stack.Screen name="Resturant" component={ResturantScreen} />
-            <Stack.Screen name="Search"  component={Search} />
-            <Stack.Screen name="Filter" component={Filter} />
-            <Stack.Screen name="Cart" options={{ presentation: 'modal', headerShown: false }} component={CartScreen} />
-            <Stack.Screen name="PreparingOrder" options={{ presentation: 'fullScreenModal', headerShown: false }} component={PreparingOrderScreen} />
+        {session && session.user ? (
+          <Stack.Navigator initialRouteName='HomeScreen'
+          screenOptions={{
+              headerShown: false
+          }}
+      >
+          {/* Welcom */}
+          <Stack.Screen name="HomeScreen" component={BottomNavigation} />
+          <Stack.Screen name="AllCaregory"  options={{ presentation: 'fullScreenModal', headerShown: false }}  component={AllCaregory} />
+          <Stack.Screen name="Resturant" component={ResturantScreen} />
+          <Stack.Screen name="Search"  component={Search} />
+          <Stack.Screen name="Filter" component={Filter} />
+          <Stack.Screen name="Cart" options={{ presentation: 'modal', headerShown: false }} component={CartScreen} />
+          <Stack.Screen name="PreparingOrder" options={{ presentation: 'fullScreenModal', headerShown: false }} component={PreparingOrderScreen} />
+          {/* Payment */}
+          <Stack.Screen name="Addpayment" options={{ headerShown: false }} component={Addpayment} />
+          <Stack.Screen name="Delivery" options={{ presentation: 'fullScreenModal', headerShown: false }} component={DeliveryScreen} />
+          <Stack.Screen name="Orders" options={{ headerShown: false }} component={Orders} />
+          <Stack.Screen name="About" options={{ headerShown: false }} component={About} />
+          <Stack.Screen name="Address" options={{ headerShown: false }} component={Address} />
+          <Stack.Screen name="Notification" options={{ headerShown: false }} component={Notification} />
+          {/* My profile */}
+          <Stack.Screen name="Myprofile"  component={Myprofile} />
+          <Stack.Screen name="Editprofile"  component={EditProfile} />
+          <Stack.Screen name="Language"  component={Language} />
+          <Stack.Screen name="Discount"  component={Discount} />
+          <Stack.Screen name="Payment"  component={Payment} />
+          <Stack.Screen name="Friend"  component={Friend} />
+          <Stack.Screen name="Map" options={{ headerShown: false }}  component={Map} />
+          <Stack.Screen name="ResturantList" options={{ headerShown: false }}  component={ResturantList} />
+          {/* Delivery */}
+          <Stack.Screen name="Cancelledorder" options={{ headerShown: false }} component={Cancelledorder} />
+          <Stack.Screen name="DriverInformation" options={{ headerShown: false }} component={DriverInformation} />
+      </Stack.Navigator> 
+          
+        ) : (
+          <Stack.Navigator initialRouteName='Welcome'
+          screenOptions={{
+              headerShown: false
+          }}
+      >
+          {/* Welcom */}
+          <Stack.Screen name="Welcome"  options={{ presentation: 'fullScreenModal', headerShown: false }}  component={Welcome} />
+        {/* Auth */}
+        <Stack.Screen name="Auth" options={{ headerShown: false }} component={Auth} />
+          <Stack.Screen name="Signup" options={{ headerShown: false }} component={Signup} />
+          <Stack.Screen name="Signin" options={{ headerShown: false }} component={Signin} />
+          <Stack.Screen name="Forgotpassword" options={{ headerShown: false }} component={Forgotpassword} />
+          <Stack.Screen name="Otp" options={{ headerShown: false }} component={Otp} />
 
-            {/* Payment */}
-            <Stack.Screen name="Addpayment" options={{ headerShown: false }} component={Addpayment} />
-
-            <Stack.Screen name="Delivery" options={{ presentation: 'fullScreenModal', headerShown: false }} component={DeliveryScreen} />
-            <Stack.Screen name="Orders" options={{ headerShown: false }} component={Orders} />
-            <Stack.Screen name="About" options={{ headerShown: false }} component={About} />
-            <Stack.Screen name="Address" options={{ headerShown: false }} component={Address} />
-            <Stack.Screen name="Notification" options={{ headerShown: false }} component={Notification} />
-            {/* My profile */}
-            <Stack.Screen name="Myprofile"  component={Myprofile} />
-            <Stack.Screen name="Editprofile"  component={EditProfile} />
-
-            <Stack.Screen name="Language"  component={Language} />
-            <Stack.Screen name="Discount"  component={Discount} />
-            <Stack.Screen name="Payment"  component={Payment} />
-            <Stack.Screen name="Friend"  component={Friend} />
-            <Stack.Screen name="Map" options={{ headerShown: false }}  component={Map} />
-            <Stack.Screen name="ResturantList" options={{ headerShown: false }}  component={ResturantList} />
-            {/* Auth */}
-            <Stack.Screen name="Auth" options={{ headerShown: false }} component={Auth} />
-            <Stack.Screen name="Signup" options={{ headerShown: false }} component={Signup} />
-            <Stack.Screen name="Signin" options={{ headerShown: false }} component={Signin} />
-            <Stack.Screen name="Forgotpassword" options={{ headerShown: false }} component={Forgotpassword} />
-            <Stack.Screen name="Otp" options={{ headerShown: false }} component={Otp} />
-            {/* Delivery */}
-            <Stack.Screen name="Cancelledorder" options={{ headerShown: false }} component={Cancelledorder} />
-            <Stack.Screen name="DriverInformation" options={{ headerShown: false }} component={DriverInformation} />
-
-        </Stack.Navigator>      
+      </Stack.Navigator>
+          
+        )}     
     </NavigationContainer>
   );
 }

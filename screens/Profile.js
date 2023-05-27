@@ -11,9 +11,6 @@ import {
   StyleSheet,
   Switch,
 } from "react-native";
-import { signOut } from "firebase/auth";
-
-import { auth } from "../configs/firebase";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { themeColors } from "../theme";
@@ -22,6 +19,8 @@ import { useRoute } from "@react-navigation/native";
 import { useColorScheme } from "nativewind";
 import ArrowRight from "../assets/images/ArrowRight.png";
 import ArrowRight_dark from "../assets/images/ArrowRight_dark.png";
+import { supabase } from "../lib/supabase";
+import { Session } from "@supabase/supabase-js";
 function Profile() {
   const navigation = useNavigation();
   const route = useRoute();
@@ -30,14 +29,7 @@ function Profile() {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   // signOut(auth)
-  const handleLogout = async () => {
-    await signOut(auth);
-    if (!auth.currentUser) {
-      navigation.navigate("Login");
-    } else {
-      console.log("error in logout");
-    }
-  };
+  
   return (
     <SafeAreaView className=" bg-white flex-1 dark:bg-slate-800">
       <View className="flex justify-between items-center flex-row px-4 py-3">
@@ -298,7 +290,7 @@ function Profile() {
                   ></Switch>
                 </View>
               </View>
-              <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
+              <TouchableOpacity onPress={() => supabase.auth.signOut()}>
                 <View className="flex flex-row items-center h-11 justify-center  my-4">
                   <View className="flex flex-row items-center">
                     <Image

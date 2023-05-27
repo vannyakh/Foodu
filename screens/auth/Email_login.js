@@ -7,7 +7,6 @@ import {
   TextInput,
 } from "react-native";
 import { View } from "react-native-animatable";
-import { auth } from "../../configs/firebase";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import * as Icon from "react-native-feather";
@@ -38,17 +37,7 @@ export default function Email_login() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async () => {
-    if (email && password) {
-      try {
-         
-        await signInWithEmailAndPassword(auth, email, password);
-      } catch (error) {
-        setError(error.message);
-        console.log("error", error.message);
-      }
-    }
-  };
+ 
 
   return (
     <SafeAreaView className="bg-white flex-1">
@@ -159,7 +148,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingBottom: 6,
     paddingTop: 12,
-    outline: "none",
     borderWidth: 0,
   },
   input: {
@@ -167,7 +155,6 @@ const styles = StyleSheet.create({
     margin: 6,
     borderWidth: 1,
     padding: 8,
-    outline: "none",
     borderWidth: 0,
   },
   countryCode: {
