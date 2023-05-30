@@ -23,6 +23,7 @@ import { useNavigation } from "@react-navigation/native";
 import { urlFor } from "../sanity";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
+import { AntDesign } from '@expo/vector-icons';
 
 const { width } = Dimensions.get("window");
 const lockWidth = width * 0.75;
@@ -119,11 +120,18 @@ export default function BasketScreen() {
           <Text className="text-center text-gray-500">{resturant.title}</Text>
         </View>
       </View>
-
-      {/* delivery time */}
+      {/* dishes */}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        className="bg-white "
+        contentContainerStyle={{
+          paddingBottom: 50,
+        }}
+      >
+        {/* delivery time */}
       <View
         style={{ backgroundColor: themeColors.bgColor(0.2) }}
-        className="flex-row px-4 items-center"
+        className="flex-row px-4 items-center mb-4"
       >
         <Image
           source={require("../assets/images/bikeGuy.png")}
@@ -148,21 +156,15 @@ export default function BasketScreen() {
             1234 Street, City, State, Country
           </Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate("Address")}
+        >
           <Text style={{ color: themeColors.text }} className="font-bold">
             Change
           </Text>
         </TouchableOpacity>
       </View>
 
-      {/* dishes */}
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        className="bg-white pt-5"
-        contentContainerStyle={{
-          paddingBottom: 50,
-        }}
-      >
         {Object.entries(groupedItems).map(([key, items]) => {
           return (
             <View
@@ -214,6 +216,38 @@ export default function BasketScreen() {
         <View className="flex-row justify-between">
           <Text className="font-extrabold">Order Total</Text>
           <Text className="font-extrabold">${basketTotal + deliveryFee}</Text>
+        </View>
+        <View className="flex-col  border-y border-[#23b45459] py-2">
+          {/* Payment methods */}
+          <TouchableOpacity 
+            onPress={() => navigation.navigate("Payment")}
+            className="flex-row justify-between items-center py-2"
+          >
+            <View
+              className="flex-row items-center space-x-3"
+            >
+            <Image source={require("../assets/images/methods.png")}
+              className="w-7 h-7 "
+            />
+            <Text className="text-gray-500">Payment methods</Text>
+            </View>
+            <AntDesign name="right" size={16} color="black" />
+          </TouchableOpacity>
+          {/* Get discounts */}
+          <TouchableOpacity 
+            onPress={() => navigation.navigate("Discount")}
+            className="flex-row justify-between items-center py-2"
+          >
+            <View 
+              className="flex-row items-center space-x-3"
+            >
+            <Image source={require("../assets/images/Getdiscounts.png")} 
+              className="w-7 h-7 "
+            />
+            <Text className="text-gray-500">Get discounts</Text>
+            </View>
+            <AntDesign name="right" size={16} color="black" />
+          </TouchableOpacity>
         </View>
         <View className="flex-row flex justify-center items-center rounded-3xl shadow-md">
           <TouchableOpacity 

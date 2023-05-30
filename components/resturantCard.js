@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TouchableWithoutFeedback,Platform } from 'react-native'
 import React from 'react'
 import { StarIcon } from 'react-native-heroicons/solid';
 import { MapPinIcon } from 'react-native-heroicons/outline';
@@ -50,7 +50,11 @@ export default function ResturantCard({
         distance,
       })
     }}>
-      <View style={{shadowColor: themeColors.bgColor(0.2), shadowRadius: 7}} className={cartClas}>
+      <View style={{
+        shadowColor: Platform.OS === 'ios' ? '#E9E9E9' : themeColors.bgColor(0.2),
+        shadowRadius: Platform.OS === 'ios' ? 7 : 5,
+        shadowOpacity: Platform.OS === 'ios' ? 0.4 : 0.5,
+      }} className={cartClas}>
          {/* status promotion */}
           <View className="absolute top-0 right-0 mt-2 mr-2 z-20">
             <LinearGradient

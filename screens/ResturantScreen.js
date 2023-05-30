@@ -81,7 +81,9 @@ export default function ResturantScreen() {
   return (
     <>
       <BasketIcon />
-      <ScrollView>
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+      >
         <View className="relative">
           <Image
             className="w-full h-72"
@@ -120,11 +122,11 @@ export default function ResturantScreen() {
           </View>
         </View>
         <View
-          style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
+          style={{ borderTopRightRadius: 30, borderTopLeftRadius: 30 }}
           className="bg-white -mt-12 pt-6 "
         >
           <View className="px-5">
-            <Text className="text-3xl font-bold">{title}</Text>
+            <Text className="text-2xl font-bold">{title}</Text>
             {/* copy this code from restaurant card */}
             <View className="flex-row space-x-2 my-1">
               <View className="flex-row items-center space-x-1">

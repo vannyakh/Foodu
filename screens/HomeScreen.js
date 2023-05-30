@@ -22,6 +22,8 @@ import { themeColors } from "../theme";
 import { TouchableWithoutFeedback } from "react-native";
 import { useColorScheme } from "nativewind";
 import Loarding from "../components/Loarding";
+import * as Location from 'expo-location';
+import HomeScelatoms from "../components/HomeScelatoms";
 
 export default function HomeScreen() {
   const [featuredCategories, setFeaturedCategories] = useState([]);
@@ -29,6 +31,10 @@ export default function HomeScreen() {
   const [refreshing, setRefreshing] = React.useState(false);
   const [loading , setLoading] = useState(false);
   const { colorScheme, toggleColorScheme } = useColorScheme();
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [ city , setCity ] = useState(null);
+  const [ street , setStreet ] = useState(null);
 
   
   const Search = () => {
@@ -41,12 +47,10 @@ export default function HomeScreen() {
     setLoading(true);
     getFeaturedResturants().then((data) => {
       setFeaturedCategories(data);
-      // console.log(data);
-      // setoutime 2000
       setTimeout(() => {
         setLoading(false);
       }
-      , 500);
+      , 1000);
     });
     
   }, []);
@@ -69,17 +73,50 @@ export default function HomeScreen() {
   const Map = () => {
     navigation.navigate("Map"); // Replace "OtherScreen" with the name of the screen you want to navigate to
   };
-  // // loading
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        console.log("Permission to access location was denied");
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      console.log("====>",location.coords.latitude);
+    })();
+  }, []);
   // useEffect(() => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1000);
-  // }, []);
+  //   if (location) {
+  //     fetch(
+  //       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=AIzaSyB-5Z6Z3Z3Q4Z3Z3Z3Z3Z3Z3Z3Z3Z3Z3Z3`
+  //     )
+  //       .then((response) => response.json())
+  //       .then((responseJson) => {
+  //         if (
+  //           responseJson.results &&
+  //           responseJson.results.length > 0 &&
+  //           responseJson.results[0].address_components &&
+  //           responseJson.results[0].address_components.length > 3
+  //         ) {
+  //           console.log("City:", responseJson.results[0].address_components[3].long_name);
+  //           console.log("Street:", responseJson.results[0].address_components[1].long_name);
+  //           setCity(responseJson.results[0].address_components[3].long_name);
+  //           setStreet(responseJson.results[0].address_components[1].long_name);
+  //         } else {
+  //           console.error("Invalid response from the geocoding API");
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   }
+  // }, [location]);
+
 
 
   return (
-    <SafeAreaView className="bg-white dark:bg-slate-800">
+    <SafeAreaView className="bg-white dark:bg-slate-800 min-h-screen">
       {/* loading */}
       {loading && (
         <View
@@ -93,10 +130,13 @@ export default function HomeScreen() {
             alignItems: "center",
           }}
         >
-          {/* <ActivityIndicator size="large" color={themeColors.bgColor(1)} />
-          <Text className="text-white mt-2">Loading...</Text> */}
-          <Loarding />
+          <ActivityIndicator size="large" color={themeColors.bgColor(1)} />
+          <Text className="text-white mt-2">Loading...</Text>
         </View>
+        // <View className="z-20 bg-white w-full justify-center h-full flex flex-row ">
+        //   <HomeScelatoms />
+        // </View>
+
       )}
       <StatusBar 
         barStyle="white-content" 
@@ -177,11 +217,13 @@ export default function HomeScreen() {
               <Text className="ml-2 flex-1 flex flex-row items-center  text-gray-400  py-px">What are you craving?</Text>
               </TouchableWithoutFeedback>
             </View>
-            <TouchableOpacity className="flex-row items-center space-x-1 border-0 border-l-2 pl-2 border-l-gray-300"
+            <TouchableOpacity className="flex-row items-center space-x-1 border-0 border-l-2 pl-2 border-l-gray-300 max-w-[38%] pr-1 overflow-ellipsis"
               onPress={Map}
             >
               <Icon.MapPin height="18" width="18" stroke="gray" />
-              <Text className="text-gray-600">Phnom penh,..</Text>
+              <Text className="text-gray-600" 
+                numberOfLines={1}
+              >Phnom penh</Text>
             </TouchableOpacity>
           </View>
           <View>

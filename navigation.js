@@ -52,11 +52,7 @@ function Navigation() {
       setSession(session)
     })
   }, [])
-  if(session && session.user){
-    console.log(session.user)
-  }
-
-  
+ 
   return (
     <NavigationContainer>
         {session && session.user ? (

@@ -7,7 +7,7 @@ import Orders from '../screens/Orders';
 import Message from '../screens/Message';
 import { themeColors } from '../theme';
 import { useColorScheme } from "nativewind";
-
+import EwalletScreen from '../screens/Wallet/EwalletScreen';
 const Tab = createBottomTabNavigator();
 
 function BottomNavigation(){
@@ -39,6 +39,11 @@ function BottomNavigation(){
                     ? 'receipt'
                     : 'receipt-outline';
                 }
+                else if (route.name === 'Ewallet') {
+                    iconName = focused
+                    ? 'wallet'
+                    : 'wallet-outline';
+                }
                 else if (route.name === 'Message') {
                     iconName = focused
                     ? 'chatbox'
@@ -53,21 +58,17 @@ function BottomNavigation(){
                 tabBarStyle: {
                     backgroundColor: colorScheme === 'dark' ? '#1E293B' : 'white',
                     borderTopWidth: 1,
-                    borderTopColor: colorScheme === 'dark' ? '#808080' : '#DBDBDB',
+                    borderTopColor: colorScheme === 'dark' ? '#808080' : '#F4F4F4',
                     elevation: 0,
                     shadowOpacity: 0,
-                    height: 70,
                 },
-                tabBarLabelStyle: {
-                    fontSize: 12,
-                    marginBottom: 10,
-                },
-                // tabBarInactiveTintColor: themeColors.bgColor(1),
+                
             })}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Orders" component={Orders} />
             <Tab.Screen name="Message" component={Message} />
+            <Tab.Screen name="Ewallet" component={EwalletScreen} />
             <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
     )

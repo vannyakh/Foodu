@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: "medium",
     color: themeColors.bgColor(1),
   },
   itemTextSelected: {
-    color: themeColors.bgColor
-    (1),
+    color: themeColors.bgColor(1),
+    
   },
 });
