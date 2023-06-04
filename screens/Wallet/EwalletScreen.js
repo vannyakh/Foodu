@@ -43,16 +43,14 @@ const EwalletScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-        <StatusBar
-            barStyle="dark-content"
-            backgroundColor="#fff"
-            />
+    <SafeAreaView style={{ flex: 1 }} 
+      className="bg-white dark:bg-gray-800 "
+    >
         <View className="flex justify-between items-center flex-row px-4 py-3 shadow-sm">
         <View className="flex justify-center items-center flex-row">
           <Image
             source={require("../../assets/icon.png")}
-            className="img-fluid h-12 w-12"
+            className="img-fluid h-12 w-12 "
           />
           <Text className="text-xl font-bold ml-2 dark:text-white">E-Wallet</Text>
         </View>
@@ -73,7 +71,7 @@ const EwalletScreen = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         showsVerticalScrollIndicator={false}
-        style={{ backgroundColor: "#fff" }}
+        className="bg-white dark:bg-gray-800"
         >
         <View className="flex flex-col px-4 py-3">
             <Card />
@@ -82,7 +80,8 @@ const EwalletScreen = () => {
         >
           
             <Text 
-              style={{ color: "#212121", fontSize: 20, fontWeight: "bold" }}
+              style={{  fontSize: 20, fontWeight: "bold" }}
+              className="dark:text-white"
             >
             Transaction History
             </Text>

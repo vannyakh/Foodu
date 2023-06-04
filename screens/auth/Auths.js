@@ -42,7 +42,7 @@ export default function Auths() {
         </Text>
         <View className="flex flex-col mt-4 ">
           <TouchableOpacity
-            onPress={() => navigation.navigate("Login")}
+            // onPress={() => navigation.navigate("Login")}
             className="bg-white rounded-full py-3  shadow flex flex-row items-center justify-center  border-gray-200 border"
           >
             <View className="flex flex-row items-center justify-center gap-4">
@@ -56,7 +56,7 @@ export default function Auths() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Email_signup")}
+            // onPress={() => navigation.navigate("Email_signup")}
             className="bg-white rounded-full py-3  shadow flex flex-row items-center justify-center  border-gray-200 border mt-4"
           >
             <View className="flex flex-row items-center justify-center gap-4">
@@ -70,7 +70,7 @@ export default function Auths() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Login")}
+            // onPress={() => navigation.navigate("Login")}
             className="bg-white rounded-full py-3  shadow flex flex-row items-center justify-center  border-gray-200 border mt-4"
           >
             <View className="flex flex-row items-center justify-center gap-4">

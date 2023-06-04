@@ -19,15 +19,15 @@ export default function FeatureRow({ id, title, description, resturants }) {
 
   return (
     <View>
-      <View className="flex-row justify-between flex items-center px-4">
+      <View className="flex-row justify-between flex items-start px-4">
         <View>
           <Text className="font-bold text-lg dark:text-white">{title}</Text>
           <Text className="text-gray-500 text-xs">{description}</Text>
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity className="flex mt-1">
           <Text style={{ color: themeColors.text }} className="font-semibold"
-          onPress={() => navigation.navigate("ResturantList", { id }) }
+          // onPress={() => navigation.navigate("ResturantList", { id }) }
           // onPress={() => navigation.navigate("ResturantList", { id }) }
           >
             See All
